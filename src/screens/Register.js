@@ -34,7 +34,8 @@ const Register = () => {
       navigate('/');
       alert('Usuario creado con éxito');
     } catch (error) {
-      alert('Error al crear usuario:', error);
+      console.error('Error al crear usuario:', error.response); // Agrega ".response" para obtener más detalles
+      alert('Error al crear usuario. Verifica la consola para obtener más detalles.');
     }
   };
   
