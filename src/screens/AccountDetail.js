@@ -70,8 +70,12 @@ const AccountDetail = () => {
     <div className="home-container">
       <Header />
       <div className="content">
-        <h2>Balance: {balance} MXN</h2>
         <h2>Transacciones</h2>
+        <div className="card" style={{ backgroundColor: '#567b84', color: '#B9C91C' }}>
+          <div className="card-content">
+            <h3>Balance: {balance} MXN</h3>
+          </div>
+        </div>
         {transactions ? (
           <div>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
@@ -87,8 +91,8 @@ const AccountDetail = () => {
         )}
         {accountDetails && <AccountCard account={accountDetails} />}
       </div>
-    </div>
-  );
+    </div>
+  );
 };
 
 export default AccountDetail;
