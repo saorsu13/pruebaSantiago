@@ -13,45 +13,47 @@ const Login = () => {
   const handleIniciarSesion = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  credentials: 'include',
-  body: JSON.stringify({
-    email: correo,
-    password: contrasena,
-  }),
-});
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: correo,
+        password: contrasena,
+      }),
+    });
 
-console.log("Respuesta del servidor:", response);
+    console.log("Respuesta del servidor:", response);
 
-if (!response.ok) {
-  const errorDetails = await response.json();
-  console.error('Error al iniciar sesión:', errorDetails || 'Detalles no disponibles');
-  setError('Credenciales incorrectas. Verifica tu correo y contraseña.');
-  setIsModalOpen(true);
-  return;
-}
+    if (!response.ok) {
+      console.error('Error al iniciar sesión (código de estado):', response.status);
+      const errorMessage = await response.text(); // Obtener el mensaje de error como texto
+      console.error('Error al iniciar sesión (detalles):', errorMessage || 'Detalles no disponibles');
+      setError('Credenciales incorrectas. Verifica tu correo y contraseña.');
+      setIsModalOpen(true);
+      return;
+    }
 
-const data = await response.json();
-console.log("Datos de la respuesta:", data);
+    // Verificar que la respuesta tenga el tipo de contenido esperado
+    const contentType = response.headers.get('Content-Type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Error al iniciar sesión: La respuesta no tiene el tipo de contenido JSON esperado.');
+      setError('Error en el formato de la respuesta del servidor.');
+      setIsModalOpen(true);
+      return;
+    }
 
-const token = data.token;
-
-if (token) {
-  localStorage.setItem('token', token);
-  console.log('Token recibido:', token);
-  navigate('/Home');
-} else {
-  console.error('Token no recibido en la respuesta del servidor.');
-}
-} catch (error) {
-  console.error('Error al iniciar sesión:', error);
-  setError('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.');
-  setIsModalOpen(true);
-}
-};
+    // Ahora puedes analizar la respuesta como JSON
+    const responseData = await response.json();
+    console.log('Contenido del cuerpo de la respuesta:', responseData);
+    navigate('/Home');
+    } catch (error) {
+      console.error('Error al iniciar sesión (excepción):', error);
+      setError('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.');
+      setIsModalOpen(true);
+    }
+  };
+  
 
   const handleRegistroClick = () => {
     navigate('/register');
