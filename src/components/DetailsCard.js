@@ -10,7 +10,6 @@ const DetailsCard = ({ account }) => {
           <h3>{account.name}</h3>
           <p>Type: {account.type}</p>
           <p>Number: {account.number}</p>
-          {/* Agrega cualquier otra información relevante de la cuenta */}
         </div>
       </div>
     </Link>

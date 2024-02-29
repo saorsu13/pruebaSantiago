@@ -5,6 +5,7 @@ import Register from '../screens/Register'
 import Home from '../screens/Home'
 import BankDetail from '../screens/BankDetail'
 import AccountDetail from '../screens/AccountDetail'
+import Settings from '../screens/Settings'
 
 const Navigation = () => {
   return (
@@ -15,6 +16,7 @@ const Navigation = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/bank/:id" element={<BankDetail />} />
         <Route path="/account/:id" element={<AccountDetail />} />
+        <Route path="/settings" element={<Settings />} /> 
       </Routes>
     </Router>
   );

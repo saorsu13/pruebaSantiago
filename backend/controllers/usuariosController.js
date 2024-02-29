@@ -46,8 +46,27 @@ const iniciarSesion = async (req, res) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
+const cerrarSesion = async (req, res) => {
+  try {
+    const token = req.header('Authorization');
+
+    if (!token) {
+      return res.status(401).json({ error: 'No se proporcionó un token de autorización' });
+    }
+    const result = await pool.query('DELETE FROM sessions WHERE token = $1', [token]);
+
+    if (result.rowCount === 0) {
+      return res.status(401).json({ error: 'Token no válido o ya ha sido eliminado' });
+    }
+    res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+  } catch (error) {
+    console.error('Error al cerrar sesión:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
 
 module.exports = {
   iniciarSesion,
-  crearUsuario
+  crearUsuario,
+  cerrarSesion
 };

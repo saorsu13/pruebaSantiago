@@ -25,7 +25,7 @@ const Register = () => {
         alert('La contraseña debe tener al menos 5 caracteres.');
         return;
       }
-      await axios.post('https://c33a-2800-484-6883-ca10-83-f5dc-3e02-8db0.ngrok-free.app/api/register', {
+      await axios.post('http://3.215.255.70:5000/api/register', {
         name: nombre,
         email: correo,
         password: contrasena
@@ -34,7 +34,7 @@ const Register = () => {
       navigate('/');
       alert('Usuario creado con éxito');
     } catch (error) {
-      console.error('Error al crear usuario:', error.response); // Agrega ".response" para obtener más detalles
+      console.error('Error al crear usuario:', error.response);
       alert('Error al crear usuario. Verifica la consola para obtener más detalles.');
     }
   };

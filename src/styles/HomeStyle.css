@@ -1,11 +1,11 @@
 .home-container {
-    background-color: #FFFFFF; /* Fondo blanco para el contenedor principal */
+    background-color: #FFFFFF;
   }
   
   .content {
-    margin: 0 auto; /* Esto centra el contenido */
-    max-width: 1200px; /* Ancho máximo del contenido */
-    padding: 20px; /* Agrega relleno alrededor del contenido */
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
   }
  .h2 {
     margin-bottom: 5px;

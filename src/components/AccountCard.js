@@ -9,7 +9,6 @@ const AccountCard = ({ account, transaction }) => {
           {account && (
             <>
               <h3>{account.name}</h3>
-              {/* Agrega cualquier otra información relevante de la cuenta */}
             </>
           )}
           {transaction && (

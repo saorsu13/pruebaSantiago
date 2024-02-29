@@ -135,10 +135,10 @@ const BankDetail = () => {
   },  [username, password, id, mfaToken, navigate, baseUrl]);
 
   return (
-    <div className="home-container"> {/* Asegúrate de que BankDetail tenga el mismo contenedor que Home */}
-    <Header /> {/* Agrega el encabezado al inicio de BankDetail */}
-    <div className="content"> {/* Asegúrate de que BankDetail tenga el mismo contenido que Home */}
-      <h2>Respuesta de Cuentas Adicionales</h2>
+    <div className="home-container">
+    <Header />
+    <div className="content">
+      <h2>Listado Cuentas</h2>
       {additionalAccountsResponse ? (
         <div>
           {additionalAccountsResponse.results.map(account => (

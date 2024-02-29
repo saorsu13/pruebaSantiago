@@ -9,7 +9,6 @@ const Card = ({ institution }) => {
         <div className="card-content">
           <h3>{institution.display_name}</h3>
             <p>Tipo: {institution.type}</p>
-          {/* Agrega cualquier otra información relevante de la institución */}
         </div>
         {institution.logo && (
           <div className="card-logo">

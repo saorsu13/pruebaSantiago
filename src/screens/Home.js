@@ -15,14 +15,12 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Verificar si el componente está montado
         if (!isMounted.current) {
           return;
         }
 
         const cachedInstitutions = JSON.parse(localStorage.getItem('cachedInstitutions')) || [];
 
-        // Verificar si las instituciones están en la caché y si la solicitud no se ha completado
         if (cachedInstitutions.length > 0 && !fetchCompleted) {
           setInstitutions(cachedInstitutions);
           setInitialLoading(false);
@@ -44,7 +42,6 @@ const Home = () => {
           setFetchCompleted(true);
           setInitialLoading(false);
 
-          // Almacenar las instituciones en la caché solo si hay nuevas instituciones
           if (JSON.stringify(data.results) !== JSON.stringify(cachedInstitutions)) {
             localStorage.setItem('cachedInstitutions', JSON.stringify(data.results));
           }
@@ -56,7 +53,6 @@ const Home = () => {
 
     fetchData();
 
-    // Cleanup de la referencia al desmontar el componente
     return () => {
       isMounted.current = false;
     };
@@ -66,7 +62,7 @@ const Home = () => {
     <div className="home-container">
       <Header />
       <div className="content">
-        <h2>Bancos</h2>
+        <h2>Listado Bancos</h2>
         {initialLoading ? (
           <div>Cargando...</div>
         ) : (

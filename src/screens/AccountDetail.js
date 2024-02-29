@@ -31,7 +31,6 @@ const AccountDetail = () => {
       const accountData = await response.json();
       setAccountDetails(accountData);
 
-      // Obtener transacciones usando el link de la cuenta
       const link = accountData.link;
       const transactionsResponse = await fetch(`${baseUrl}/api/transactions/?page=1&link=${link}`, {
         method: 'GET',
@@ -70,7 +69,7 @@ const AccountDetail = () => {
     <div className="home-container">
       <Header />
       <div className="content">
-        <h2>Transacciones</h2>
+        <h2>Listado Transacciones</h2>
         <div className="card" style={{ backgroundColor: '#567b84', color: '#B9C91C' }}>
           <div className="card-content">
             <h3>Balance: {balance} MXN</h3>

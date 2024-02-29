@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
+import { Navigate } from 'react-router-dom';
+
 
 const Settings = () => {
-  const handleLogout = () => {
-    // Agrega aquí la lógica para cerrar sesión
-    // Por ejemplo, eliminar la información de autenticación almacenada
-    // y redirigir al usuario a la página de inicio de sesión
-    console.log('Cerrar sesión...');
+  const [token, setToken] = useState('');
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://3.215.255.70:5000/api/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error al cerrar sesión: ${response.statusText}`);
+      }
+      setToken(''); 
+      console.log('Cerrar sesión...');
+      Navigate('/');
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (

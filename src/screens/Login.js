@@ -8,11 +8,12 @@ const Login = () => {
   const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
 
   const handleIniciarSesion = async () => {
     try {
-      const response = await fetch('https://c33a-2800-484-6883-ca10-83-f5dc-3e02-8db0.ngrok-free.app/api/login', {
+      const response = await fetch('http://3.215.255.70:5000/api/login', {
         method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,14 +28,13 @@ const Login = () => {
 
     if (!response.ok) {
       console.error('Error al iniciar sesión (código de estado):', response.status);
-      const errorMessage = await response.text(); // Obtener el mensaje de error como texto
+      const errorMessage = await response.text();
       console.error('Error al iniciar sesión (detalles):', errorMessage || 'Detalles no disponibles');
       setError('Credenciales incorrectas. Verifica tu correo y contraseña.');
       setIsModalOpen(true);
       return;
     }
 
-    // Verificar que la respuesta tenga el tipo de contenido esperado
     const contentType = response.headers.get('Content-Type');
     if (!contentType || !contentType.includes('application/json')) {
       console.error('Error al iniciar sesión: La respuesta no tiene el tipo de contenido JSON esperado.');
@@ -43,7 +43,6 @@ const Login = () => {
       return;
     }
 
-    // Ahora puedes analizar la respuesta como JSON
     const responseData = await response.json();
     console.log('Contenido del cuerpo de la respuesta:', responseData);
     navigate('/Home');
@@ -52,6 +51,9 @@ const Login = () => {
       setError('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.');
       setIsModalOpen(true);
     }
+    
+    setToken('el_token_obtenido');
+
   };
   
 
