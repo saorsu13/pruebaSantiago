@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
+import AccountCard from '../components/AccountCard';
+import '../styles/HomeStyle.css'
 
 const AccountDetail = () => {
   const { id } = useParams();
@@ -64,27 +67,26 @@ const AccountDetail = () => {
   }, [id]);
 
   return (
-    <div>
-      <h2>Balance: {balance} MXN</h2>
-      <h2>Transacciones</h2>
-      {transactions ? (
-        <div>
-          <ul>
-            {transactions.results.map((transaction) => (
-              <li key={transaction.id}>
-                <strong>Tipo:</strong> {transaction.type},{' '}
-                <strong>Monto:</strong> {transaction.amount},{' '}
-                <strong>Moneda:</strong> {transaction.currency},{' '}
-                <strong>Estado:</strong> {transaction.status},{' '}
-                <strong>Fecha:</strong> {transaction.value_date},{' '}
-                <strong>Referencia:</strong> {transaction.reference}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>Cargando transacciones...</p>
-      )}
+    <div className="home-container">
+      <Header />
+      <div className="content">
+        <h2>Balance: {balance} MXN</h2>
+        <h2>Transacciones</h2>
+        {transactions ? (
+          <div>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              {transactions.results.map((transaction) => (
+                <li key={transaction.id}>
+                  <AccountCard account={accountDetails} transaction={transaction} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>Cargando transacciones...</p>
+        )}
+        {accountDetails && <AccountCard account={accountDetails} />}
+      </div>
     </div>
   );
 };

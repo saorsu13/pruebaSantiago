@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import DetailsCard from '../components/DetailsCard';
+import Header from '../components/Header';
+import '../styles/HomeStyle.css';
 
 const BankDetail = () => {
   const { id } = useParams();
@@ -132,25 +135,22 @@ const BankDetail = () => {
   },  [username, password, id, mfaToken, navigate, baseUrl]);
 
   return (
-    <div>
+    <div className="home-container"> {/* Asegúrate de que BankDetail tenga el mismo contenedor que Home */}
+    <Header /> {/* Agrega el encabezado al inicio de BankDetail */}
+    <div className="content"> {/* Asegúrate de que BankDetail tenga el mismo contenido que Home */}
       <h2>Respuesta de Cuentas Adicionales</h2>
       {additionalAccountsResponse ? (
         <div>
           {additionalAccountsResponse.results.map(account => (
-            <Link key={account.id} to={`/account/${account.id}`}>
-              <div className="account-card">
-                <h3>{account.name}</h3>
-                <p>Type: {account.type}</p>
-                <p>Number: {account.number}</p>
-              </div>
-            </Link>
+            <DetailsCard key={account.id} account={account} />
           ))}
         </div>
       ) : (
         <p>Cargando...</p>
       )}
     </div>
-  );
+  </div>
+);
 };
 
 export default BankDetail;

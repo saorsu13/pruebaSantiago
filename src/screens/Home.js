@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react'
+import Header from '../components/Header';
+import Card from '../components/Card';
+import '../styles/HomeStyle.css'
 
 const Home = () => {
   const isMounted = useRef(true);
@@ -61,25 +63,23 @@ const Home = () => {
   }, [username, password, institutions, fetchCompleted]);
 
   return (
-    <div>
-      <h2>Página de Inicio</h2>
-
-      {initialLoading ? (
-        <div>Cargando...</div>
-      ) : (
-        <div>
-          <h3>Instituciones:</h3>
-          <ul>
-            {Array.isArray(institutions) && institutions.map((institution) => (
-              <li key={institution.id}>
-                <Link to={`/bank/${institution.id}`}>
-                  {institution.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <div className="home-container">
+      <Header />
+      <div className="content">
+        <h2>Bancos</h2>
+        {initialLoading ? (
+          <div>Cargando...</div>
+        ) : (
+          <div>
+            <h3>Instituciones:</h3>
+            <div className="card-container">
+              {institutions.map((institution) => (
+                <Card key={institution.id} institution={institution} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
