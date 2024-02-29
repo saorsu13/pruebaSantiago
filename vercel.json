@@ -1,0 +1,12 @@
+{
+    "routes": [
+      {
+        "handle": "cors"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "https://prueba-santiago-jet.vercel.app/api/$1"
+      }
+    ]
+  }
+  

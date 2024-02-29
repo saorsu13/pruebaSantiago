@@ -10,9 +10,11 @@ const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  const apiUrl = process.env.REACT_APP_API_URL || 'https://prueba-santiago-jet.vercel.app/api';
+
   const handleIniciarSesion = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch(`${apiUrl}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
