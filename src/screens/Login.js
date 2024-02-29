@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleIniciarSesion = async () => {
-    try {
+    // try {
       const response = await fetch('http://localhost:5000/api/login', {
   method: 'POST',
   headers: {
@@ -46,11 +46,11 @@ if (token) {
 } else {
   console.error('Token no recibido en la respuesta del servidor.');
 }
-} catch (error) {
-  console.error('Error al iniciar sesión:', error);
-  setError('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.');
-  setIsModalOpen(true);
-}
+// } catch (error) {
+//   console.error('Error al iniciar sesión:', error);
+//   setError('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.');
+//   setIsModalOpen(true);
+// }
 };
 
   const handleRegistroClick = () => {
