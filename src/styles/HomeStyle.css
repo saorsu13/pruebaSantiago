@@ -1,13 +1,30 @@
 .home-container {
-    background-color: #FFFFFF;
+  background-color: #FFFFFF;
+  background-size: cover;
+  background-position: center;
+}
+  .content {
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-top: 20px;
+  }
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 10px;
+    margin: 0 auto;
   }
   
-  .content {
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 20px;
-  }
- .h2 {
-    margin-bottom: 5px;
+  body {
     font-family: 'Lato', sans-serif;
   }
+  
+  .card {
+    flex-direction: column;
+  }
+  
+  .card-logo img {
+    width: 100%;
+    max-width: 250px;
+  }
+}
