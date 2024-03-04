@@ -8,7 +8,7 @@ const Settings = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('https://30a0-3-215-255-70.ngrok-free.app/api/logout', {
+      const response = await fetch('https://4d68-3-215-255-70.ngrok-free.app/api/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
